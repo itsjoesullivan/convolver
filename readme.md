@@ -4,14 +4,15 @@
 
 ```javascript
 var Convolver = require('convolver');
-var emt140 = require('emt-one-forty');
+var emt140 = require('one-forty');
+
+var context = new AudioContext();
 
 var loop = getRockingLoopIWantToAddReverbTo();
 
 var convolver = Convolver(context, emt140('bright1'))
+convolver.connect(context.destination);
 
-loop.connect(master);
+loop.connect(context.destination);
 loop.connect(convolver);
-convolver.connect(master);
-convolver.gain.value = 0.1;
 ```
